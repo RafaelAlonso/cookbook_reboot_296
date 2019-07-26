@@ -19,7 +19,6 @@ class Controller
     description = @view.get_recipe_description
     recipe = Recipe.new(name, description)
     @cookbook.add_recipe(recipe)
-
   end
 
   def destroy
@@ -29,6 +28,5 @@ class Controller
     list
     index = @view.get_recipe_index
     @cookbook.remove_recipe(index)
-
   end
 end
