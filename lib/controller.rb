@@ -15,8 +15,8 @@ class Controller
   def create
     # criar uma nova receita
     # guardar esse receita
-    name = @view.get_recipe_name
-    description = @view.get_recipe_description
+    name = @view.input_recipe_name
+    description = @view.input_recipe_description
     recipe = Recipe.new(name, description)
     @cookbook.add_recipe(recipe)
   end
@@ -26,7 +26,7 @@ class Controller
     # selecionar a receita
     # eliminar uma receita do repositorio
     list
-    index = @view.get_recipe_index
+    index = @view.input_recipe_index
     @cookbook.remove_recipe(index)
   end
 end
