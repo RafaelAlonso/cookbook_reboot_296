@@ -1,7 +1,9 @@
 class View
   def mostrar_receitas(recipes)
     recipes.each_with_index do |recipe, index|
-      puts "#{index}: #{recipe.name} #{recipe.description}"
+      done = recipe.done ? "[X]" : "[ ]"
+      puts "#{index}. #{done} #{recipe.name} (#{recipe.prep_time})"
+      puts "#{recipe.description}\n"
     end
   end
 
@@ -21,5 +23,17 @@ class View
     puts "Write your recipe index"
     get_recipe_index = gets.chomp.to_i
     return get_recipe_index
+  end
+
+  def input_ingredient
+    puts "What ingredient would you like a recipe for?"
+    get_ingredient = gets.chomp
+    return get_ingredient
+  end
+
+  def input_time
+    puts "Write your recipe prep time"
+    get_time = gets.chomp
+    return get_time
   end
 end

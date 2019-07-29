@@ -21,11 +21,20 @@ class Cookbook
     save
   end
 
+  def check_and_save(marked)
+    @recipes[marked].mark_as_done!
+    save
+  end
+
+  private
+
   def load
     CSV.foreach(@csv_file_path, 'r') do |row|
       name = row[0]
       description = row[1]
-      recipe = Recipe.new(name, description)
+      prep_time = row[2]
+      done = row[3]
+      recipe = Recipe.new(name, description, prep_time, done)
       @recipes << recipe
     end
     # abrir arquivo csv (ler)
@@ -36,7 +45,7 @@ class Cookbook
   def save
     CSV.open(@csv_file_path, 'w') do |csv|
       @recipes.each do |recipe|
-        csv << [recipe.name, recipe.description]
+        csv << [recipe.name, recipe.description, recipe.prep_time, recipe.done]
       end
     end
     # abrir arquivo csv
